@@ -1,0 +1,82 @@
+html {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+div,
+section,
+header,
+footer,
+p,
+h1,
+h2 {
+  box-sizing: border-box;
+}
+
+a {
+  color: royalblue;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.global-width {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.graphic-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.scroll-graphic {
+  top: 0px;
+  position: sticky;
+  height: 100vh;
+}
+
+.scroll-text {
+  position: relative;
+}
+
+.step {
+  margin-bottom: 60vh;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 3px;
+}
+
+.scene-img {
+  max-height: 100vh;
+}
+
+/* 
+- [v] 1. 이미지가 겹쳐 있쳐있음 
+- [v] 2. 이미지 사이즈 관게없이 가운데 위치
+- [v] 3. 이미지 화면 꽉 채움
+- [v] 4. 이미지 위치기 sticky
+- [] 5. 말풍선 이미지 위로
+- [] 6. 말풍선 css 디자인 (그림자, 백그라운드, radius, padding)
+- [] 7. 말풍선 기준으로 margin-bottom: 60vh
+- [] 8. 이미지 높이 100vh
+*/
