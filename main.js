@@ -84,8 +84,11 @@ const actions = {
     let step;
     let boundingRect;
 
-    for (let i = ioIndex > 0 ? ioIndex - 1 : 0; i <= ioIndex + 1; i++) {
+    for (let i = 0 ? ioIndex - 1 : 0; i < ioIndex + 2; i++) {
       step = stepElems[i];
+      if (!step) {
+        continue;
+      }
       boundingRect = step.getBoundingClientRect();
 
       if (
