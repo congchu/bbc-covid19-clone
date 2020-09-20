@@ -21,16 +21,24 @@
  -> 전역 변수 사용을 회피하기 위해서 (()=>{})() 즉시 실행 익명함수를 만든다. 
 */
 
+// IntersectionObserver
+
 (() => {
   const stepElems = document.querySelectorAll(".step");
   const graphicElems = document.querySelectorAll(".graphic-item");
   let currentItem = graphicElems[0]; // 현재 활성화된(visible 클래스가 붙은) .grapic-item 지정
+  let ioIndex = 0;
+
+  // Intersection Observer 객체가,
+  // observe로 관찰하는 대상이 되는 객체들이 사라지거나 나타날 때,
+  // 그 시점마다 callback함수가 실행이 된다.
+  const io = new IntersectionObserver((entries, observer) => {
+    ioIndex = Number(entries[0].target.dataset.index);
+  });
 
   for (let i = 0; i < stepElems.length; i++) {
+    io.observe(stepElems[i]);
     stepElems[i].dataset.index = i;
-  }
-
-  for (let i = 0; i < graphicElems.length; i++) {
     graphicElems[i].dataset.index = i;
   }
 
@@ -45,7 +53,8 @@
   window.addEventListener("scroll", () => {
     let step;
     let boundingRect;
-    for (let i = 0; i < stepElems.length; i++) {
+
+    for (let i = ioIndex > 0 ? ioIndex - 1 : 0; i <= ioIndex + 1; i++) {
       step = stepElems[i];
       boundingRect = step.getBoundingClientRect();
 
