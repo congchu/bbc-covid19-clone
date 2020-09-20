@@ -23,12 +23,32 @@
 
 // IntersectionObserver
 
+const actions = {
+  birdFlies(isStart) {
+    const birdElement = document.querySelector('[data-index="2"] .bird');
+    if (isStart) {
+      birdElement.style.transform = `translateX(${window.innerWidth}px)`;
+    } else {
+      birdElement.style.transform = `translateX(-100%)`;
+    }
+  },
+  birdFlies2(isStart) {
+    const birdElement = document.querySelector('[data-index="5"] .bird');
+    if (isStart) {
+      birdElement.style.transform = `translate(${window.innerWidth}px,${
+        -window.innerHeight * 0.7
+      }px)`;
+    } else {
+      birdElement.style.transform = `translateX(-100%)`;
+    }
+  },
+};
+
 (() => {
   const stepElems = document.querySelectorAll(".step");
   const graphicElems = document.querySelectorAll(".graphic-item");
   let currentItem = graphicElems[0]; // 현재 활성화된(visible 클래스가 붙은) .grapic-item 지정
   let ioIndex = 0;
-
   // Intersection Observer 객체가,
   // observe로 관찰하는 대상이 되는 객체들이 사라지거나 나타날 때,
   // 그 시점마다 callback함수가 실행이 된다.
@@ -44,10 +64,20 @@
 
   function activate() {
     currentItem.classList.add("visible");
+
+    const actionName = currentItem.dataset.action;
+    if (actionName && typeof actionName !== "undefined") {
+      actions[actionName](true);
+    }
   }
 
   function inactivate() {
     currentItem.classList.remove("visible");
+
+    const actionName = currentItem.dataset.action;
+    if (actionName && typeof actionName !== "undefined") {
+      actions[actionName](false);
+    }
   }
 
   window.addEventListener("scroll", () => {
@@ -67,6 +97,10 @@
         activate();
       }
     }
+  });
+
+  window.addEventListener("load", () => {
+    setTimeout(() => scrollTo(0, 0), 100);
   });
   activate();
 })();

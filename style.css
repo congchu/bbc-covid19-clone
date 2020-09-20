@@ -42,6 +42,7 @@ img {
   height: 100%;
   opacity: 0;
   transition: 0.5s;
+  will-change: opacity;
 }
 
 .visible {
@@ -52,6 +53,7 @@ img {
   top: 0px;
   position: sticky;
   height: 100vh;
+  overflow-x: hidden
 }
 
 .scroll-text {
@@ -80,3 +82,19 @@ img {
 - [] 7. 말풍선 기준으로 margin-bottom: 60vh
 - [] 8. 이미지 높이 100vh
 */
+
+
+.bird {
+  position: absolute;
+  left: 0px;
+  width: 80px;
+  transform: translateX(-100%);
+  transition: 2s 0.5s linear;
+}
+
+[data-index="5"] .bird {
+  left: 30%;
+  bottom: 30%;
+  transform: translateX(-100%);
+  transition: 1.5s 0.5s linear;
+}
